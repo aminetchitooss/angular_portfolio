@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,9 +16,11 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { MaterialModule } from 'src/shared/modules/material.module';
-import { CoreModule } from 'src/shared/core/core.module';
 import { HomeComponent } from './home/home.component';
+import { GoogleAssistComponent } from './google-assist/google-assist.component';
+import { CoreModule } from './shared/core/core.module';
+import { MaterialModule } from './shared/modules/material.module';
+import { GoogleAssistModule } from './google-assist/google-assist.module';
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -26,7 +28,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    GoogleAssistComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,9 +53,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-  
+    GoogleAssistModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { LoaderService } from '../core/loader/loader.service';
 
 import { ToastaConfig, ToastaService, ToastOptions } from 'ngx-toasta';
 import { BehaviorSubject } from 'rxjs';
@@ -19,10 +18,11 @@ export class DataService {
 
   public USER_KEY = environment.userKey;
   public MASTER_KEY = environment.masterKey;
+  public IMAGE_PLACE_HOLDER = "assets/images/newsBlank.png";
   history = []
 
   constructor(public toastaService: ToastaService, public toastaConfig: ToastaConfig,
-    public loader: LoaderService, public translate: TranslateService, public router: Router) { }
+    public translate: TranslateService, public router: Router) { }
 
   initApp() {
     this.toastaConfig.theme = 'material';
@@ -63,7 +63,8 @@ export class DataService {
   }
 
   getCurrentUser(): CurrentUser {
-    return this.isNotNull(JSON.parse(localStorage.getItem(this.USER_KEY))) ? JSON.parse(localStorage.getItem(this.USER_KEY)) : {};
+    return this.isNotNull(JSON.parse(localStorage.getItem(this.USER_KEY))) ?
+      JSON.parse(localStorage.getItem(this.USER_KEY)) : {};
   }
 
   setCurrentUser(pCurentUser: CurrentUser) {
@@ -119,15 +120,31 @@ export class DataService {
     this.toastaService.warning(toastOptions);
   }
 
-  showLoader() {
-    this.loader.show()
+
+  translateMessage(value: string): string {
+    let trad;
+    this.translate.get(value).subscribe((res: string) => { trad = res; });
+    return trad;
   }
 
-  hideLoader() {
-    setTimeout(() => {
-      this.loader.hide()
-    }, 30);
+  formatTime(pDate) {
+    const date = pDate.split('T')[0]
+    const time = pDate.split('T')[1]
+    return this.translateMessage('COMMON.pub') + date.split('-').reverse().join('/')
+      + this.translateMessage('COMMON.at') + [time.split(':')[0], time.split(':')[1]].join(':')
   }
 
+  truncContent(pDes, isTitle?) {
+    const vLength = isTitle ? 70 : 120
+    if (pDes) {
+      if (pDes.length < vLength) {
+        return pDes
+      } else {
+        let vParag = pDes.toString().substring(0, vLength).split(' ')
+        vParag.pop()
+        return vParag.join(' ') + " ..."
+      }
+    }
+  }
 }
 

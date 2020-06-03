@@ -1,6 +1,9 @@
 {
   "COMMON": {
-    "greeting": "Bonjour"
+    "greeting": "Bonjour",
+    "pub": "Publié le",
+    "at":" à ",
+    "seeMore": "Cliquez pour en savoir plus sur le titre"
   },
   "LOGIN": {
     "email": "Email Groupe Servier",

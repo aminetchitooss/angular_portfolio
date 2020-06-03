@@ -1,0 +1,15 @@
+<div class="pending text-center">
+    <p>Let's have fun with Google Assistant</p>
+    <img src="" alt="">
+</div>
+<div class="results" *ngIf='!pending'>
+    <mat-tab-group dynamicHeight [selectedIndex]="selected.value" (selectedIndexChange)="change($event)"
+        mat-align-tabs="center">
+        <mat-tab label="News">
+            <app-news [itemList]="newsList"></app-news>
+        </mat-tab>
+        <mat-tab label="Weather">
+            <app-weather [itemList]="weatherList"></app-weather>
+        </mat-tab>
+    </mat-tab-group>
+</div>

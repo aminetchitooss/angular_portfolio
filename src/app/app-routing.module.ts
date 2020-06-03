@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { GoogleAssistComponent } from './google-assist/google-assist.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: 'real-time-assist', component: GoogleAssistComponent, loadChildren: './google-assist/google-assist.module#GoogleAssistModule' },
+  { path: '**', redirectTo: 'real-time-assist' }
 ];
 
 @NgModule({

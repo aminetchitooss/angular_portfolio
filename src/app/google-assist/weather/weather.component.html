@@ -1,0 +1,45 @@
+<div class="content pt-5 d-flex align-items-center justify-content-center">
+
+    <!--Card-->
+    <div class="card mb-4 mr-0 mr-md-5 mr-lg-5 mr-xlmr-md-5-5">
+
+        <!--Card content-->
+        <div class="card-block">
+            <!--Title-->
+            <h2 class=" m-b-2">{{data.name}}</h2>
+            <p class="main">{{data.weather?.description}} <small><span class="grey-text">&middot; Wind
+                        {{data.wind?.speed}} mph &middot;
+                        Humidity:
+                        {{data.main?.humidity}}%</span></small></p>
+
+            <div class="d-flex justify-content-around align-items-center">
+                <img src="{{data.weather?.icon}}">
+                <div class="col-xs-6 today text-xs-center">{{data.main?.temp}}&deg;</div>
+            </div>
+
+            <div class="row no-gutters justify-content-between">
+                <div class="col-xs-2">
+                    <p style="white-space: pre-wrap;">{{data.dt}}</p>
+                </div>
+                <div class="col-xs-2">
+                    <p>{{data.main?.temp_max}}&deg;</p>
+                    <p class="text-xs-center night grey-text">{{data.main?.temp_min}}&deg;</p>
+                </div>
+
+            </div>
+
+            <div class="row no-gutters mt-3 justify-content-start">
+                <div class="col-xs-2">
+                    <p class="grey-text">Sunrise : {{data.sys?.sunrise}}</p>
+                    <p class="grey-text">Sunset : {{data.sys?.sunset}}</p>
+                </div>
+            </div>
+
+        </div>
+        <!--/.Card content-->
+
+    </div>
+
+    <div id="map">
+    </div>
+</div>

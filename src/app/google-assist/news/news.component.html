@@ -1,0 +1,11 @@
+<div class="list">
+    <div *ngFor='let item of newsList' class="card" (click)='openLink(item.url)'>
+        <img class="card-img-top" src="{{item.urlToImage}}" alt="Card image cap">
+        <div class="card-body body">
+            <h5 class="card-title"> {{ds.truncContent(item.title, true)}} </h5>
+            <p class="card-text">
+                {{ ds.isNotNull(item.content) ? ds.truncContent(item.description) : ('COMMON.seeMore' | translate)}}</p>
+            <p class="card-text"><small class="text-muted"> {{ds.formatTime(item.publishedAt)}}</small></p>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,70 @@
 @import "./variables.scss";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "FontRegular";
+}
+p {
+  margin: 0;
+}
+.loaderDim {
+  width: 260px;
+  position: relative;
+  top: 0px;
+}
+
+img,
+video {
+  object-fit: cover;
+  // object-position: 0 0;
+}
+
+@font-face {
+  font-family: "FontBold";
+  src: url("assets/Font/Roboto-Bold.woff");
+}
+
+@font-face {
+  font-family: "FontRegular";
+  src: url("assets/Font/Roboto-Regular.woff");
+}
+
+@font-face {
+  font-family: "FontLight";
+  src: url("assets/Font/Roboto-Light.woff");
+}
+
+@font-face {
+  font-family: "funTitle";
+  src: url("assets/Font/Cream-Peach.woff");
+}
+
+$themeList: "warning" "success" "lightdark" "danger" "primary";
+$colorsTypes: $warning $success $lightdark $danger $primary;
+$styleTheme: zip($themeList, $colorsTypes);
+
+@each $var in $styleTheme {
+  .fill-#{nth($var,1)} {
+    fill: nth($var, 2);
+  }
+}
+
+.funTitle {
+  font-family: "funTitle";
+  font-size: 3.5em;
+  background: -webkit-linear-gradient($info, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mat-tab-header-pagination.mat-tab-header-pagination-disabled,
+.mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+  display: none !important;
+}
+.mat-tab-label-active {
+  opacity: 1 !important;
+}

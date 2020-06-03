@@ -1,0 +1,26 @@
+.content {
+  flex-wrap: wrap;
+}
+.today {
+  font-size: 6rem;
+  font-weight: 100;
+  color: #666;
+}
+.night {
+  font-weight: 300;
+}
+.card {
+  padding: 2rem;
+  width: 320px;
+}
+.main {
+  text-transform: capitalize;
+}
+.grey-text {
+  color: #9e9e9e !important;
+}
+
+#map {
+  width: 100%;
+  max-width: 500px;
+}

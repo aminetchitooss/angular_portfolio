@@ -1,6 +1,9 @@
 {
   "COMMON": {
-    "greeting": "Hello"
+    "greeting": "Hello",
+    "pub": "Published the",
+    "at":" at ",
+    "seeMore":"Click to see more about the headline"
   },
   "LOGIN": {
     "email": "Servier Group Email",

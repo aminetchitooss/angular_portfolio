@@ -17,7 +17,7 @@ export class FireBaseService {
   public ideasURL = "ideas";
   public initiativesURL = "initiatives";
   public publicURL = "initiatives";
-  
+
   constructor(public db: AngularFirestore, public ds: DataService) {
     if (firebase.apps.length === 0) {
       firebase.initializeApp(environment.firebaseConfig);
@@ -27,28 +27,28 @@ export class FireBaseService {
 
   getCollectionDoc(param, pId): Observable<any> {
     if (environment.refresh) {
-      return this.db.collection(param).doc(pId).valueChanges().pipe(map(res => {
-        return res
-      }), catchError(err => this.handleError(err)))
+      return this.db.collection(param).doc(pId).valueChanges().pipe(map(res => res), catchError(this.handleError))
     } else {
       return this.db.collection(param).doc(pId).get().pipe(map(res => {
         return res.data()
-      }), catchError(err => this.handleError(err)))
+      }), catchError(this.handleError))
     }
 
   }
 
   getCollection(param): Observable<any> {
     if (environment.refresh) {
-      return this.db.collection(param).valueChanges().pipe(map(res => {
-        return res
-      }), catchError(err => this.handleError(err)))
+      return this.db.collection(param).valueChanges().pipe(map(res => res), catchError(this.handleError))
     } else {
       return this.db.collection(param).get().pipe(map(res => {
         return res.docChanges().map(ress => ress.doc.data())
-      }), catchError(err => this.handleError(err)))
+      }), catchError(this.handleError))
     }
 
+  }
+
+  addCollection(param, pData) {
+    return this.db.collection(param).add(pData)
   }
 
   addWidthDocId(param, pUser) {
